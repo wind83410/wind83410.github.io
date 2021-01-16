@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本篇是系列文 JS 地下城的第一篇，用於記錄學習 Javascript 的過程。JS 地下城，是我在 Udemy 買的、網頁技術教學團隊六角學院所開的課程之一，用不同的題目協助修課學員練習 JS 語法。他們建議學員記錄每道題目解題過程和解釋自己的程式碼結構，故有此系列文。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 地下城：九九乘法表">
+<meta property="og:url" content="http://example.com/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Memo">
+<meta property="og:description" content="本篇是系列文 JS 地下城的第一篇，用於記錄學習 Javascript 的過程。JS 地下城，是我在 Udemy 買的、網頁技術教學團隊六角學院所開的課程之一，用不同的題目協助修課學員練習 JS 語法。他們建議學員記錄每道題目解題過程和解釋自己的程式碼結構，故有此系列文。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://example.com/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/js-tower-1-thumbnail.png">
+<meta property="og:image" content="http://example.com/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/js-tower-1-template.png">
+<meta property="article:published_time" content="2021-01-13T15:23:37.000Z">
+<meta property="article:modified_time" content="2021-01-15T16:27:44.239Z">
+<meta property="article:author" content="Mack Chen">
+<meta property="article:tag" content="JS 地下城">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/js-tower-1-thumbnail.png">
+
+<link rel="canonical" href="http://example.com/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>JS 地下城：九九乘法表 | Memo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Memo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">寫起來放</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mack Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Memo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS 地下城：九九乘法表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-13 23:23:37" itemprop="dateCreated datePublished" datetime="2021-01-13T23:23:37+08:00">2021-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-01-16 00:27:44" itemprop="dateModified" datetime="2021-01-16T00:27:44+08:00">2021-01-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本篇是系列文 JS 地下城的第一篇，用於記錄學習 Javascript 的過程。JS 地下城，是我在 Udemy 買的、網頁技術教學團隊六角學院所開的課程之一，用不同的題目協助修課學員練習 JS 語法。他們建議學員記錄每道題目解題過程和解釋自己的程式碼結構，故有此系列文。</p>
+<a id="more"></a>
+
+<p>閱讀前注意事項：</p>
+<ul>
+<li>以下會將 HTML 標籤和 DOM 元素分別略稱為「標籤」和「元素」，並且視兩者為同義詞交替使用。</li>
+<li>在此文未提及的語法大多是為了樣式或排版，本文會集中在學系重點的相關語法上，故與此較無關者僅做精簡解釋。</li>
+</ul>
+<h2 id="示意圖和成品連結"><a href="#示意圖和成品連結" class="headerlink" title="示意圖和成品連結"></a>示意圖和成品連結</h2><img src="/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/js-tower-1-thumbnail.png" class="">
+
+<p>Codepen: <a target="_blank" rel="noopener" href="https://codepen.io/wind83410/pen/bGwjgqy">https://codepen.io/wind83410/pen/bGwjgqy</a></p>
+<h2 id="學習重點"><a href="#學習重點" class="headerlink" title="學習重點"></a>學習重點</h2><ul>
+<li>自動生成 DOM 元素並渲染至畫面</li>
+</ul>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>在開始寫程式碼之前，先觀察一下設計圖上<strong>是否有可重複的單元</strong>（類似的排版等）。有的話可以先做那個單元，之後就能複製單元完成畫面；以本次題目而言，可重複的單元即是「單一的乘法表」，如下圖所示。</p>
+<img src="/2021/01/13/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E%EF%BC%9A%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/js-tower-1-template.png" class="">
+
+<p>只要把左上角的「數字標題 2」和「乘法算式（比如 2 × 1 = 2）最前面的數字」替換成其他數字即可完成其他數字的乘法表。</p>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><p>照上一段的思考，寫程式碼的流程為先產生重複單元，再以複製該單元完成畫面。</p>
+<h3 id="重複單元結構"><a href="#重複單元結構" class="headerlink" title="重複單元結構"></a>重複單元結構</h3><p>接下來是大致安排重複單元的 DOM 結構。考慮結構的可讀性，大數字可以用標題標籤 <code>&lt;h2&gt;</code>，下方的乘法算式可用無序列表 <code>&lt;ul&gt;</code> 和 <code>&lt;li&gt;</code> 的組合來做；最高層級的標題標籤 <code>&lt;h1&gt;</code> 則留給整個頁面的標題「九九乘法表」。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span> i <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> i × 1 = i <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> i × 2 = 2i <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> i × 9 = 9i <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中 i 為 2 到 9 的數字，而 i 的倍數會在產生時換成相對應的數字。大概想好結構之後，就能開始寫 Javascript 產生重複單元。</p>
+<h3 id="生成重複單元"><a href="#生成重複單元" class="headerlink" title="生成重複單元"></a>生成重複單元</h3><p>這裡採取的作法，主要使用兩種函數：<code>document.createElement()</code> 和 <code>Node.appendChild()</code>；前者負責產生新的元素，後者則負責把元素 A 加到另一個元素 B 讓 A 變成 B 的子元素，一次只能加一個。（後者亦可用新的 API <code>ParentNode.append()</code> 取代，可同時加多個元素）</p>
+<p>首先，先產生重複單元最外層的 <code>&lt;div&gt;</code>。<code>document.createElement()</code> 此函數接受的參數為標籤名稱字串，所以只要在括號裡放進 <code>&#39;div&#39;</code> 即可產生。產生後以常數格式 <code>const</code> 儲存。用同樣的方式產生標題 <code>&lt;h2&gt;</code> 和空的無序列表 <code>&lt;ul&gt;</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> box = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>) <span class="comment">// 產生 div 元素，以下同理。</span></span><br><span class="line"><span class="keyword">const</span> title = <span class="built_in">document</span>.createElement(<span class="string">&#x27;h2&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.createElement(<span class="string">&#x27;ul&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>此時標題還是空白，用元素的 <code>textContent</code> 屬性加入數字到標籤內。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title.textContent = i</span><br></pre></td></tr></table></figure>
+<p>這裡 <code>i</code> 還沒有在程式內定義，它是代表乘法表的數字標題，等一下複製單元時會用到。</p>
+<p>接下來產生乘法算式，一共九個。可以發現乘法算式有很明顯的格式規律 <code>i × j = ij</code>，<code>j</code> 為 1 到 9 的正整數。利用這一點，可以出動<strong>專門反覆作業的迴圈</strong>協助，加上這裡有帶入數字，故這裡可以用 <code>for</code> 迴圈。</p>
+<p>在每次的作業裡，產生一個新的 <code>&lt;li&gt;</code> 元素、加入算式，並用 <code>Node.appendChild()</code> 把 <code>&lt;li&gt;</code> 加到 <code>list</code> 裡，如此反覆九次即可產生九個算式。</p>
+<ul>
+<li>產生新的 <code>li</code> 元素 <code>item</code>：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> item = <span class="built_in">document</span>.createElement(<span class="string">&#x27;li&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>在 <code>&lt;li&gt;</code> 加入算式：這裡利用樣板字面值使字串能隨迴圈進行而改變。樣板字面值 (template literals) 由兩個重音記號 (backticks) <code>`</code> 、裡面所包含的字元與佔位符 (placeholder) <code>$&#123;&#125;</code> 構成，可以產生字串；佔位符的括號內可以填入變數改變樣板字面值產生的字串，使其「格式相同但各欄位的填寫內容不同」。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保持「某數 × 某數 = 乘積」的格式，並根據填入的數字不同變化字串</span></span><br><span class="line">item.textContent = <span class="string">`<span class="subst">$&#123;i&#125;</span> × <span class="subst">$&#123;j&#125;</span> = <span class="subst">$&#123;i*j&#125;</span>`</span></span><br><span class="line"><span class="comment">// 例如 i=1, j=2，字串值為 &#x27;1 × 2 = 2&#x27;</span></span><br><span class="line"><span class="comment">// 例如 i=3, j=7，字串值為 &#x27;3 × 7 = 21&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li>用 <code>Node.appendChild()</code> 把 <code>item</code> 加到 <code>list</code> 裡：<code>Node.appendChild()</code> 的 <code>Node</code> 是指可以有子元素的元素，而該函數的參數為想要放入的子元素。將 <code>item</code>（<code>&lt;li&gt;</code> 元素）加到 <code>list</code> 裡（<code>&lt;ul&gt;</code> 元素）的做法如下：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.appendChlid(item)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>再用 for 迴圈重複九次之後即可產生乘法算式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; <span class="number">9</span>; i++) &#123; <span class="comment">// 用 for 迴圈反覆九次</span></span><br><span class="line">  <span class="keyword">const</span> item = <span class="built_in">document</span>.createElement(<span class="string">&#x27;li&#x27;</span>) <span class="comment">// 產生 li 元素</span></span><br><span class="line">  item.textContent = <span class="string">`<span class="subst">$&#123;i&#125;</span> × <span class="subst">$&#123;j&#125;</span> = <span class="subst">$&#123;i*j&#125;</span>`</span> <span class="comment">// 加入乘法算式</span></span><br><span class="line">  list.appendChild(item) <span class="comment">// 把 item 加到 list</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最後，把乘法算式列表 <code>list</code>、標題 <code>title</code> 加進 <code>box</code> 裡即可完成重複單元。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> box = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> title = <span class="built_in">document</span>.createElement(<span class="string">&#x27;h2&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.createElement(<span class="string">&#x27;ul&#x27;</span>)</span><br><span class="line">title.textContent = i</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span> ; j &lt;= <span class="number">9</span>; j++) &#123;</span><br><span class="line">  <span class="keyword">const</span> item = <span class="built_in">document</span>.createElement(<span class="string">&#x27;li&#x27;</span>)</span><br><span class="line">  item.textContent = <span class="string">`<span class="subst">$&#123;i&#125;</span> × <span class="subst">$&#123;j&#125;</span> = <span class="subst">$&#123;i*j&#125;</span>`</span></span><br><span class="line">  list.appendChild(item)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 相當於以下兩行</span></span><br><span class="line"><span class="comment">// box.appendChild(title)</span></span><br><span class="line"><span class="comment">// box.appendChild(list)</span></span><br><span class="line">box.append(title, list)</span><br></pre></td></tr></table></figure>
+<h3 id="複製並加進-DOM-裡"><a href="#複製並加進-DOM-裡" class="headerlink" title="複製並加進 DOM 裡"></a>複製並加進 DOM 裡</h3><p>再來只要複製單元加進 DOM 就能完成畫面。這裡因為要一次完成 2 到 9 的乘法表，所以一樣用 for 迴圈處理，前文所述的未定義變數 <code>i</code> 就是這時候用上。</p>
+<p>因為要放進網頁裡，所以得先當作容器的元素取出來。我在 HTML 裡先寫一個顯示用的 <code>div</code>，標上 <code>id=&quot;table&quot;</code> 屬性，然後在 Javascript 裡用 <code>document.getElementById()</code> 選出該元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> table = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;table&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>再來寫 for 迴圈，每次作業中產生一個乘法表的同時加進 <code>table</code> 裡。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">  <span class="comment">// 重複單元</span></span><br><span class="line">  <span class="keyword">const</span> box = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> title = <span class="built_in">document</span>.createElement(<span class="string">&#x27;h2&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> list = <span class="built_in">document</span>.createElement(<span class="string">&#x27;ul&#x27;</span>)</span><br><span class="line">  title.textContent = i</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span> ; j &lt;= <span class="number">9</span>; j++) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = <span class="built_in">document</span>.createElement(<span class="string">&#x27;li&#x27;</span>)</span><br><span class="line">    item.textContent = <span class="string">`<span class="subst">$&#123;i&#125;</span> × <span class="subst">$&#123;j&#125;</span> = <span class="subst">$&#123;i*j&#125;</span>`</span></span><br><span class="line">    list.appendChild(item)</span><br><span class="line">  &#125;</span><br><span class="line">  box.append(title, list)</span><br><span class="line">  <span class="comment">// 加進 table 裡</span></span><br><span class="line">  table.appendChild(box)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自動生成乘法表完成。</p>
+<h2 id="附錄"><a href="#附錄" class="headerlink" title="附錄"></a>附錄</h2><p>這裡附上一些有用到但與學習重點不太相關的語法說明</p>
+<ul>
+<li><code>Element.classList.add()</code>: 幫元素加上特定的類別屬性 <code>class</code>，函數參數為類別屬性名稱的字串。詳見<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/API/Element/classList">火狐的說明文件</a>。</li>
+<li>在 Codepen 原始碼裡我實際上在乘法表外面還多加了一層 <code>&lt;div&gt;</code> 元素 (<code>wrap</code>)，是為了要讓排版用的類別 <code>col-md-4</code> 和乘法表樣式會用的類別 <code>chart</code> 分離。</li>
+<li>排版是用 Bootstrap 4.5 內的網格系統 (grid system)。詳見 <a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/4.5/layout/grid/">Bootstrap 英文版說明文件</a>。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JS-%E5%9C%B0%E4%B8%8B%E5%9F%8E/" rel="tag"># JS 地下城</a>
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/13/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E6%84%8F%E5%9C%96%E5%92%8C%E6%88%90%E5%93%81%E9%80%A3%E7%B5%90"><span class="nav-number">1.</span> <span class="nav-text">示意圖和成品連結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E9%87%8D%E9%BB%9E"><span class="nav-number">2.</span> <span class="nav-text">學習重點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">4.</span> <span class="nav-text">程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A4%87%E5%96%AE%E5%85%83%E7%B5%90%E6%A7%8B"><span class="nav-number">4.1.</span> <span class="nav-text">重複單元結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%87%8D%E8%A4%87%E5%96%AE%E5%85%83"><span class="nav-number">4.2.</span> <span class="nav-text">生成重複單元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A4%87%E8%A3%BD%E4%B8%A6%E5%8A%A0%E9%80%B2-DOM-%E8%A3%A1"><span class="nav-number">4.3.</span> <span class="nav-text">複製並加進 DOM 裡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E9%8C%84"><span class="nav-number">5.</span> <span class="nav-text">附錄</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Chen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
