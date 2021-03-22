@@ -22,19 +22,19 @@
 
   <meta name="description" content="最近在 LeetCode 上寫題目練習分析問題和程式邏輯，我會把解出來的問題寫成文順便練習解釋。本篇問題是在給定字串內尋找最長無重複字元 (character) 的子字串 (substring)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 練功塔：找最長無重複字元的字串">
-<meta property="og:url" content="http://example.com/2021/03/20/LeetCode-%E7%B7%B4%E5%8A%9F%E5%A1%94%EF%BC%9A%E6%89%BE%E6%9C%80%E9%95%B7%E7%84%A1%E9%87%8D%E8%A4%87%E5%AD%97%E5%85%83%E7%9A%84%E5%AD%97%E4%B8%B2/index.html">
+<meta property="og:title" content="LeetCode 練功塔：找最長無重複字元的字串長度">
+<meta property="og:url" content="http://example.com/2021/03/22/LeetCode-%E7%B7%B4%E5%8A%9F%E5%A1%94%EF%BC%9A%E6%89%BE%E6%9C%80%E9%95%B7%E7%84%A1%E9%87%8D%E8%A4%87%E5%AD%97%E5%85%83%E7%9A%84%E5%AD%97%E4%B8%B2%E9%95%B7%E5%BA%A6/index.html">
 <meta property="og:site_name" content="Memo">
 <meta property="og:description" content="最近在 LeetCode 上寫題目練習分析問題和程式邏輯，我會把解出來的問題寫成文順便練習解釋。本篇問題是在給定字串內尋找最長無重複字元 (character) 的子字串 (substring)。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-03-20T10:52:59.961Z">
-<meta property="article:modified_time" content="2021-03-22T11:12:50.670Z">
+<meta property="article:published_time" content="2021-03-22T13:02:30.000Z">
+<meta property="article:modified_time" content="2021-03-22T13:02:30.832Z">
 <meta property="article:author" content="Mack Chen">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="字串">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/03/20/LeetCode-%E7%B7%B4%E5%8A%9F%E5%A1%94%EF%BC%9A%E6%89%BE%E6%9C%80%E9%95%B7%E7%84%A1%E9%87%8D%E8%A4%87%E5%AD%97%E5%85%83%E7%9A%84%E5%AD%97%E4%B8%B2/">
+<link rel="canonical" href="http://example.com/2021/03/22/LeetCode-%E7%B7%B4%E5%8A%9F%E5%A1%94%EF%BC%9A%E6%89%BE%E6%9C%80%E9%95%B7%E7%84%A1%E9%87%8D%E8%A4%87%E5%AD%97%E5%85%83%E7%9A%84%E5%AD%97%E4%B8%B2%E9%95%B7%E5%BA%A6/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>LeetCode 練功塔：找最長無重複字元的字串 | Memo</title>
+  <title>LeetCode 練功塔：找最長無重複字元的字串長度 | Memo</title>
   
 
 
@@ -157,7 +157,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/LeetCode-%E7%B7%B4%E5%8A%9F%E5%A1%94%EF%BC%9A%E6%89%BE%E6%9C%80%E9%95%B7%E7%84%A1%E9%87%8D%E8%A4%87%E5%AD%97%E5%85%83%E7%9A%84%E5%AD%97%E4%B8%B2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/22/LeetCode-%E7%B7%B4%E5%8A%9F%E5%A1%94%EF%BC%9A%E6%89%BE%E6%9C%80%E9%95%B7%E7%84%A1%E9%87%8D%E8%A4%87%E5%AD%97%E5%85%83%E7%9A%84%E5%AD%97%E4%B8%B2%E9%95%B7%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode 練功塔：找最長無重複字元的字串
+          LeetCode 練功塔：找最長無重複字元的字串長度
         </h1>
 
         <div class="post-meta">
@@ -180,15 +180,8 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-03-20 18:52:59" itemprop="dateCreated datePublished" datetime="2021-03-20T18:52:59+08:00">2021-03-20</time>
+              <time title="創建時間：2021-03-22 21:02:30" itemprop="dateCreated datePublished" datetime="2021-03-22T21:02:30+08:00">2021-03-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-03-22 19:12:50" itemprop="dateModified" datetime="2021-03-22T19:12:50+08:00">2021-03-22</time>
-              </span>
 
           
 
@@ -231,7 +224,7 @@
 <ul>
 <li>目前累積的無重複字元字串：利用它是 <code>s</code> 的子字串這個特性，不必特地將它取出來存進另一個變數裡，只要掌握最前面和最後面兩個索引 (indices) 就能從 <code>s</code> 取出。</li>
 </ul>
-<h1 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h1><h2 id="第一版程式碼"><a href="#第一版程式碼" class="headerlink" title="第一版程式碼"></a>第一版程式碼</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lengthOfLongestSubstring = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s === <span class="string">&#x27;&#x27;</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> (s.length === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> substring = <span class="string">&#x27;&#x27;</span>, longestLen = <span class="number">0</span></span><br><span class="line">  s.split(<span class="string">&#x27;&#x27;</span>).forEach(<span class="function"><span class="params">curChar</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> ind = substring.split(<span class="string">&#x27;&#x27;</span>).find(<span class="function"><span class="params">char</span> =&gt;</span> char === curChar) <span class="comment">// 找衝突字元</span></span><br><span class="line">    <span class="keyword">if</span> (ind === <span class="literal">undefined</span>) &#123; <span class="comment">// 沒找到</span></span><br><span class="line">      substring += curChar</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 有找到</span></span><br><span class="line">      <span class="keyword">const</span> pieces = substring.split(curChar) <span class="comment">// 以衝突字元的位置為界切成兩半</span></span><br><span class="line">      substring = pieces[<span class="number">1</span>] + curChar <span class="comment">// 取後半</span></span><br><span class="line">    &#125;</span><br><span class="line">    longestLen = substring.length &gt; longestLen ? substring.length : longestLen</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> longestLen</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h1><h2 id="第一版程式碼"><a href="#第一版程式碼" class="headerlink" title="第一版程式碼"></a>第一版程式碼</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lengthOfLongestSubstring = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s === <span class="string">&#x27;&#x27;</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> (s.length === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> substring = <span class="string">&#x27;&#x27;</span>, longestLen = <span class="number">0</span></span><br><span class="line">  s.split(<span class="string">&#x27;&#x27;</span>).forEach(<span class="function"><span class="params">curChar</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> ind = substring.split(<span class="string">&#x27;&#x27;</span>).find(<span class="function"><span class="params">char</span> =&gt;</span> char === curChar) <span class="comment">// 找衝突字元</span></span><br><span class="line">    <span class="keyword">if</span> (ind === <span class="literal">undefined</span>) &#123; <span class="comment">// 沒找到</span></span><br><span class="line">      substring += curChar</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 有找到</span></span><br><span class="line">      <span class="keyword">const</span> pieces = substring.split(curChar) <span class="comment">// 以衝突字元的位置為界切成兩半</span></span><br><span class="line">      substring = pieces[<span class="number">1</span>] + curChar <span class="comment">// 取後半</span></span><br><span class="line">    &#125;</span><br><span class="line">    longestLen = substring.length &gt; longestLen ? substring.length : longestLen <span class="comment">// 更新長度</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> longestLen</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>另外使用變數 <code>substring</code> 儲存目前累積的最常字串。</li>
 <li>因為參數字串 <code>s</code> 含有如倒斜線 <code>\</code>、括號 <code>()</code> 和雙引號 <code>&quot;&quot;</code> 等在正則表達式 (regular expression) 裡需要跳脫 (escape) 的字元，使用 <code>String.search()</code> 比對字串不太方便，所以用 <code>String.split()</code> 先換成 <code>Array</code> 後，再用 <code>Array.find()</code> 找衝突字元的位置。</li>
